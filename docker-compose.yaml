@@ -1,14 +1,13 @@
-version: '3'
 services:
-  live_chat:
+  chat_app:
     build:
       context: .
-      dockerfile: ./live_chat/Dockerfile
-    container_name: live_chat
-    # command: mix phx.server
+      dockerfile: ./chat_app/Dockerfile
+    container_name: chat_app
+    command: mix phx.server
     volumes:
-      - ./live_chat:/app  # Monte le dossier local dans le conteneur
+      - ./chat_app:/app 
     ports:
-      - "4000:4000"  # Mappe le port 4000 si nécessaire
+      - "4000:4000" 
     tty: true  # Maintient le terminal actif
     stdin_open: true  # Maintient l'entrée standard ouverte

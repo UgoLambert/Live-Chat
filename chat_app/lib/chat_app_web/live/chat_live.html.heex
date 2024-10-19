@@ -1,0 +1,19 @@
+<div id="chat-box">
+  <%= for msg <- @messages do %>
+    <div>
+      <strong><%= msg.user %>:</strong> <%= msg.body %>
+    </div>
+  <% end %>
+</div>
+
+<%= if @user == "" do %>
+  <form phx-submit="set_user">
+    <input type="text" name="user" placeholder="Entrez votre nom" />
+    <button type="submit">Rejoindre</button>
+  </form>
+<% else %>
+  <form phx-submit="send_message">
+    <input type="text" name="message" placeholder="Entrez un message"/>
+    <button type="submit">Envoyer</button>
+  </form>
+<% end %>

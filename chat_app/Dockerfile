@@ -13,17 +13,21 @@ WORKDIR /app
 # Installer Hex (le gestionnaire de paquets d'Elixir) et rebar (outil de compilation Erlang)
 RUN mix local.hex --force && mix local.rebar --force
 
-# Copier le fichier mix.exs et mix.lock dans le conteneur pour installer les dépendances
+
+WORKDIR /app
+
+# # Copy only the dependency files
 # COPY mix.exs mix.lock ./
 
-# Installer les dépendances Elixir
+# # Install dependencies
 # RUN mix deps.get
 
-# Copier le reste du code source dans le conteneur
-# COPY ./live_chat /app
+# # Copy the rest of the application
+# COPY . .
 
-# Exposer le port 4000 si tu prévois de servir une application web à l'avenir
+
+# Expose port 4000
 EXPOSE 4000
 
-# Démarre une session interactive si on lance le conteneur avec bash
-CMD ["iex", "-S", "mix"]
+# The default command (will be overridden by docker-compose)
+CMD ["mix", "phx.server"]

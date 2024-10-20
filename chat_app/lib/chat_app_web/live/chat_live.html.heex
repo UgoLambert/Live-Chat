@@ -1,7 +1,7 @@
-<div id="chat-box">
-  <%= for msg <- @messages do %>
-    <div>
-      <strong><%= msg.user %>:</strong> <%= msg.body %>
+<div class="chat-messages">
+  <%= for message <- @messages do %>
+    <div class="message">
+      <strong><%= message.user %>:</strong> <%= message.body %>
     </div>
   <% end %>
 </div>
@@ -13,7 +13,7 @@
   </form>
 <% else %>
   <form phx-submit="send_message">
-    <input type="text" name="message" placeholder="Entrez un message"/>
+    <input type="text" name="message" placeholder="Entrez un message" value={@new_message} />
     <button type="submit">Envoyer</button>
   </form>
 <% end %>

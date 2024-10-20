@@ -1,38 +1,38 @@
 defmodule LiveChat.ChatRoom do
   use GenServer
 
-  # Démarre le GenServer avec un état initial vide
   def start_link(_) do
-    GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
+    GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
-  # Callback de démarrage
-  def init(state) do
-    {:ok, state}
+  def init(_) do
+    {:ok, []}
   end
 
-  # Fonction pour ajouter un utilisateur à la salle de chat
-  def add_user(user_pid) do
-    GenServer.cast(__MODULE__, {:add_user, user_pid})
+  def broadcast_message(name, message) do
+    GenServer.cast(__MODULE__, {:broadcast_message, name, message})
   end
 
-  # Fonction pour envoyer un message à tous les utilisateurs
-  def broadcast_message(from_pid, message) do
-    GenServer.cast(__MODULE__, {:broadcast_message, from_pid, message})
+  def get_messages do
+    GenServer.call(__MODULE__, :get_messages)
   end
 
-  # Handle cast pour ajouter un utilisateur
-  def handle_cast({:add_user, user_pid}, state) do
-    {:noreply, Map.put(state, user_pid, true)}
+  def handle_cast({:add_user}, messages) do
+    {:noreply, messages}
   end
 
-  # Handle cast pour diffuser un message à tous les utilisateurs
-  def handle_cast({:broadcast_message, from_pid, message}, state) do
-    for {user_pid, _} <- state do
-      if user_pid != from_pid do
-        send(user_pid, {:new_message, message})
-      end
-    end
-    {:noreply, state}
+  def handle_cast({:broadcast_message, name, message}, messages) do
+    new_message = %{
+      user: name,
+      body: message,
+      timestamp: DateTime.utc_now()
+    }
+
+    Phoenix.PubSub.broadcast(ChatApp.PubSub, "chat", {:new_message, name})
+    {:noreply, [new_message | messages]}
+  end
+
+  def handle_call(:get_messages, _from, messages) do
+    {:reply, messages, messages}
   end
 end

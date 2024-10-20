@@ -5,13 +5,22 @@ defmodule ChatAppWeb.ChatLive do
     {:ok, assign(socket, messages: [], user: "", new_message: "")}
   end
 
-  def handle_event("send_message", %{"message" => message}, socket) do
-    new_message = %{user: socket.assigns.user, body: message}
-    # Appelle ici ton GenServer pour stocker le message
-    {:noreply, assign(socket, messages: [new_message | socket.assigns.messages], new_message: "")}
+  def handle_event("set_user", %{"user" => user}, socket) do
+    LiveChat.User.start_link(user)
+    if connected?(socket) do
+      Phoenix.PubSub.subscribe(ChatApp.PubSub, "chat")
+    end
+    {:noreply, assign(socket, messages: LiveChat.ChatRoom.get_messages(), user: user)}
   end
 
-  def handle_event("set_user", %{"user" => user}, socket) do
-    {:noreply, assign(socket, user: user)}
+  def handle_event("send_message", %{"message" => message}, socket) do
+    LiveChat.User.send_message(socket.assigns.user, message)
+    {:noreply, assign(socket, messages: LiveChat.ChatRoom.get_messages(), new_message: "")}
   end
+
+  # Event PubSub
+  def handle_info({:new_message, _name}, socket) do
+    {:noreply, assign(socket, messages: LiveChat.ChatRoom.get_messages())}
+  end
+
 end

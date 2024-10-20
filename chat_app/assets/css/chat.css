@@ -2,7 +2,7 @@
 .chat-container {
   max-width: 70em;
   margin: 0 auto;
-  padding: 40px;
+  padding: 20px;
 }
 
 /* Section des messages */
@@ -79,4 +79,12 @@
 
 .chat-form button.join:hover {
   background-color: #4338ca; /* Darker indigo on hover */
+}
+
+h1 {
+  font-size: 2.5rem; /* Taille du texte (gros) */
+  text-align: center; /* Centrage du texte */
+  margin: 20px; /* Espacement en dessous du titre */
+  color: #05c22b; /* Couleur gris foncé */
+  font-weight: bold; /* Mettre le titre en gras */
 }

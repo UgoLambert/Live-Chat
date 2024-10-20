@@ -1,0 +1,82 @@
+/* Container général du chat */
+.chat-container {
+  max-width: 70em;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+/* Section des messages */
+.chat-messages {
+  background-color: #f7fafc; /* Gris clair */
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  height: 35em;
+  margin-bottom: 16px;
+}
+
+/* Message individuel */
+.message {
+  margin-bottom: 8px;
+  padding: 8px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0; /* Border light */
+}
+
+/* Style pour l'utilisateur */
+.message strong {
+  color: #4f46e5; /* Indigo */
+}
+
+/* Style pour le texte */
+.message span {
+  color: #4a5568; /* Gris foncé */
+}
+
+/* Formulaire général */
+.chat-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Champs de saisie */
+.chat-form input[type="text"] {
+  margin-bottom: 8px;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.chat-form input[type="text"]:focus {
+  border-color: #4f46e5; /* Indigo focus */
+  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.5); /* Indigo ring */
+}
+
+/* Boutons */
+.chat-form button {
+  background-color: #34d399; /* Green */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.chat-form button:hover {
+  background-color: #059669; /* Darker green on hover */
+}
+
+.chat-form button.join {
+  background-color: #4f46e5; /* Indigo */
+}
+
+.chat-form button.join:hover {
+  background-color: #4338ca; /* Darker indigo on hover */
+}

@@ -1,19 +1,24 @@
-<div class="chat-messages">
-  <%= for message <- @messages do %>
-    <div class="message">
-      <strong><%= message.user %>:</strong> <%= message.body %>
-    </div>
-  <% end %>
-</div>
+<div class="chat-container">
+  <div class="chat-messages">
+    <%= for message <- @messages do %>
+      <div class="message">
+        <strong><%= message.user %>:</strong>
+        <span><%= message.body %></span>
+      </div>
+    <% end %>
+  </div>
 
-<%= if @user == "" do %>
-  <form phx-submit="set_user">
-    <input type="text" name="user" placeholder="Entrez votre nom" />
-    <button type="submit">Rejoindre</button>
-  </form>
-<% else %>
-  <form phx-submit="send_message">
-    <input type="text" name="message" placeholder="Entrez un message" value={@new_message} />
-    <button type="submit">Envoyer</button>
-  </form>
-<% end %>
+  <div class="chat-form">
+    <%= if @user == "" do %>
+      <form phx-submit="set_user">
+        <input type="text" name="user" placeholder="Entrez votre nom" />
+        <button type="submit" class="join">Rejoindre</button>
+      </form>
+    <% else %>
+      <form phx-submit="send_message">
+        <input type="text" name="message" placeholder="Entrez un message" value={@new_message} />
+        <button type="submit">Envoyer</button>
+      </form>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+/chat_app/_build
+/chat_app/deps
+
+/ollama_data/
+
+/rag/code_base/
+
+# Byte-compiled / optimized / DLL files
+/rag/__pycache__/
+/rag/*.py[cod]
+/rag/*$py.class
+
+# C extensions
+/rag/*.so
+
+# Distribution / packaging
+/rag/.Python
+/rag/build/
+/rag/develop-eggs/
+/rag/dist/
+/rag/downloads/
+/rag/eggs/
+/rag/.eggs/
+/rag/lib/
+/rag/lib64/
+/rag/parts/
+/rag/sdist/
+/rag/var/
+/rag/wheels/
+/rag/share/python-wheels/
+/rag/.qnd/
+/rag/.venv
+/rag/phoenix/
+/rag/phoenix_db_jina-embeddings-v2-base-code-local/
+/rag/*.egg-info/
+/rag/.installed.cfg
+/rag/*.egg
+/rag/MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+/rag/*.manifest
+/rag/*.spec
+
+# Installer logs
+/rag/pip-log.txt
+/rag/pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+/rag/htmlcov/
+/rag/.tox/
+/rag/.nox/
+/rag/.coverage
+/rag/.coverage.*
+/rag/.cache
+/rag/nosetests.xml
+/rag/coverage.xml
+/rag/*.cover
+/rag/*.py,cover
+/rag/.hypothesis/
+/rag/.pytest_cache/
+/rag/cover/
+
+# Translations
+/rag/*.mo
+/rag/*.pot
+
+# Django stuff:
+/rag/*.log
+/rag/local_settings.py
+/rag/db.sqlite3
+/rag/db.sqlite3-journal
+
+# Flask stuff:
+/rag/instance/
+/rag/.webassets-cache
+
+# Scrapy stuff:
+/rag/.scrapy
+
+# Sphinx documentation
+/rag/docs/_build/
+
+# PyBuilder
+/rag/.pybuilder/
+/rag/target/
+
+# Jupyter Notebook
+/rag/.ipynb_checkpoints
+
+# IPython
+/rag/profile_default/
+/rag/ipython_config.py
+
+/rag/.pdm.toml
+/rag/.pdm-python
+/rag/.pdm-build/
+
+/rag/__pypackages__/
+
+/rag/celerybeat-schedule
+/rag/celerybeat.pid
+
+# SageMath parsed files
+/rag/*.sage.py
+
+# mkdocs documentation
+/rag/site
+
+# mypy
+/rag/.mypy_cache/
+/rag/.dmypy.json
+/rag/dmypy.json
+
+# Pyre type checker
+/rag/.pyre/
+
+# pytype static type analyzer
+/rag/.pytype/
+
+# Cython debug symbols
+/rag/cython_debug/

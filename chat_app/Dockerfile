@@ -1,4 +1,4 @@
-# Utiliser l'image officielle d'Elixir avec Erlang et Elixir 1.17 préinstallés
+# Utiliser l'image officielle d'Elixir avec Erlang et Elixir 1.17 preinstalles
 FROM elixir:1.17
 
 # Installer les dépendances nécessaires pour Elixir et les outils de compilation
@@ -7,24 +7,19 @@ RUN apt-get update && apt-get install -y \
     inotify-tools \
     && apt-get clean
 
-# Définir le répertoire de travail dans le conteneur
 WORKDIR /app
 
 # Installer Hex (le gestionnaire de paquets d'Elixir) et rebar (outil de compilation Erlang)
 RUN mix local.hex --force && mix local.rebar --force
 
+# Copy only the dependency files
+COPY chat_app/mix.exs chat_app/mix.lock ./
 
-WORKDIR /app
+# Install dependencies
+RUN mix deps.get
 
-# # Copy only the dependency files
-# COPY mix.exs mix.lock ./
-
-# # Install dependencies
-# RUN mix deps.get
-
-# # Copy the rest of the application
-# COPY . .
-
+# Copy the rest of the application
+COPY chat_app/ .
 
 # Expose port 4000
 EXPOSE 4000

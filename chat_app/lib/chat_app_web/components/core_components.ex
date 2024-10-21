@@ -573,7 +573,15 @@ defmodule ChatAppWeb.CoreComponents do
   @doc """
   Renders a [Heroicon](https://heroicons.com).
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+  Heroicons come in three styles â€“ outline, solid, and mini.
+=======
   Heroicons come in three styles – outline, solid, and mini.
+>>>>>>> dbc8dab635d9f6020e8cd23b45eb9143616d8573
+=======
+  Heroicons come in three styles – outline, solid, and mini.
+>>>>>>> dbc8dab635d9f6020e8cd23b45eb9143616d8573
   By default, the outline style is used, but solid and mini may
   be applied by using the `-solid` and `-mini` suffix.
 

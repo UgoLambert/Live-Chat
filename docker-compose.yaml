@@ -6,8 +6,42 @@ services:
     container_name: chat_app
     command: mix phx.server
     volumes:
-      - ./chat_app:/app 
+      - ./chat_app:/app
     ports:
-      - "4000:4000" 
+      - "4000:4000"
     tty: true  # Maintient le terminal actif
-    stdin_open: true  # Maintient l'entrée standard ouverte
+    stdin_open: true  # Maintient l'entree standard ouverte
+
+  rag:
+    build:
+      context: .
+      dockerfile: ./rag/Dockerfile
+    container_name: rag
+    command: chainlit run main.py --host 0.0.0.0
+    volumes:
+      - ./rag:/app
+      - ./chat_app/:/app/code_base/
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    ports:
+      - "8000:8000"
+    networks:
+      - app_network
+
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    volumes:
+      - ./ollama_data:/root/.ollama
+    ports:
+      - "11434:11434"
+    networks:
+      - app_network
+    # docker exec -it ollama ollama run llama3.2:1b
+
+networks:
+  app_network:
+    driver: bridge
+
